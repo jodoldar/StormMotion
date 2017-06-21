@@ -24,28 +24,17 @@ pause(2);
 for k=1:1:length(colors)
     image(imagenRes==colors(k));
     colormap(color);
-    %pause(1);
+    pause(1);
 end
 
 pause(2);
 umbral = 10;
 for i=length(colors):-1:1
-    if colors(i)==umbral
-        return;
-    end
+    if
     if any(any(imagenRes==colors(i)))
         base = imagenRes==colors(i);
         break;
-    end   
+    end
+    
 end
-[imgBase,num]=bwlabel(imagenRes==11);
-positions = zeros(2,num);
-for i=1:1:num
-    positions(:,i) = [mean(floor(find(mat==i)/480));mean(mod(find(mat==i),480))];
-end
-image(imagenRes);
-colormap(color);
-hold
-scatter(positions(1,:),positions(2,:),100,'md','filled');
-hold
 toc
