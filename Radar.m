@@ -1,5 +1,5 @@
 tic
-[imagen,color]=imread('200620171710.gif');
+[imagen,color]=imread('images/200620171710.gif');
 pos=1;
 colors = zeros(1,11);
 for i=146:24:386
@@ -23,6 +23,7 @@ pause(2);
 [Al,An] = size(imagenRes);
 for k=1:1:length(colors)
     image(imagenRes==colors(k));
-    pause(0.5);
+    colormap(color);
+    pause(1);
 end
 toc
