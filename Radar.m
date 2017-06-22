@@ -1,5 +1,5 @@
 tic
-[imagen,color]=imread('images/210620171940.gif');
+[imagen,color]=imread('images/200620171710.gif');
 pos=1;
 colors = zeros(1,11);
 for i=146:24:386
@@ -35,7 +35,7 @@ for i=length(colors):-1:1
         return;
     end
     if any(any(imagenRes==colors(i)))
-        base = imagenRes==colors(i-1);
+        base = imagenRes==colors(i);
         fprintf('Color %d corresponde a %d\n',i,colors(i));
         break;
     end   
