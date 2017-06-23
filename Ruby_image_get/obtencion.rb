@@ -4,7 +4,7 @@ require 'openssl'
 require 'json'
 require 'open-uri'
 
-index = 10
+index = 100
 while 1 < 2	
 	peticion = "opendata/api/red/radar/regional/va"
 	api_key = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdXJhbmNkcjk2QGdtYWlsLmNvbSIsImp0aSI6IjBiMmFlZDI5LWZiZjItNDA2NS1hNTU3LTdhNjk3ZWM2YTQzNCIsImV4cCI6MTUwNTk3ODk2NiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE0OTgyMDI5NjYsInVzZXJJZCI6IjBiMmFlZDI5LWZiZjItNDA2NS1hNTU3LTdhNjk3ZWM2YTQzNCIsInJvbGUiOiIifQ.BTgmiLouk2VDknXqWxGRBWrc2QGmEmw5wRNWAUDPcC8"
@@ -19,17 +19,16 @@ while 1 < 2
 	response = http.request(request)
 	data = JSON.parse(response.body)
 	url_image = data["datos"] +""
-	#image = url_image.split("/")[5]
-	#url_image = url_image[0,(url_image.length-8)]
 	puts url_image
-	#puts image
-
+	time = Time.new()
+	file_name = ""+(time.year).to_s+(time.month).to_s+(time.day).to_s+(time.hour).to_s+(time.min).to_s
+	puts file_name
 	OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 	open(url_image) {|f|
-	   File.open("./ruby_images/image"+index.to_s+".gif","wb") do |file|
+	   File.open("./ruby_images/"+file_name+".gif","wb") do |file|
 	     file.puts f.read
 	   end
 	}
 	index = index + 1
-	sleep(120)
+	sleep(600)
 end
