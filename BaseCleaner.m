@@ -11,5 +11,6 @@ for i=2:1:numImages
     %imshow(carriedBase);
     %pause(0.5);
 end
+imwrite(carriedBase,'BaseProvincias.gif');
 save('BaseProvincias','carriedBase');
 toc

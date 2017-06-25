@@ -1,5 +1,7 @@
 tic
-[imagen,color]=imread('images/200620171710.gif');
+[imagen,color]=imread('images/230620171730.gif');
+[base,colorBase]=imread('BaseProvincias.gif');
+load('BaseProvincias.mat');
 pos=1;
 colors = zeros(1,11);
 for i=146:24:386
@@ -19,13 +21,13 @@ imagenRes = imcrop(imagenRes,[0 0 485 480]);
 image(imagenRes);
 colormap(color);
 %pause(2);
-
 [Al,An] = size(imagenRes);
 for k=1:1:length(colors)
     image(imagenRes==colors(k));
     colormap(color);
     %pause(1);
 end
+imagenRes=imagenRes.*abs(1-base);
 
 %pause(2);
 umbral = 10;
