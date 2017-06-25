@@ -8,7 +8,8 @@ for i=2:1:numImages
     currentImg = imread(strcat(imgNames(i).folder,'\',imgNames(i).name));
     currentImg = imcrop(currentImg,[0 0 485 480]);
     carriedBase = carriedBase&currentImg;
-    imshow(carriedBase);
+    %imshow(carriedBase);
     %pause(0.5);
 end
+save('BaseProvincias','carriedBase');
 toc
