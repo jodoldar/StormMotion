@@ -1,5 +1,5 @@
 tic
-[imagen,color]=imread('images/230620171730.gif');
+[imagen,color]=imread('images/200620171710.gif');
 [base,colorBase]=imread('BaseProvincias.gif');
 load('BaseProvincias.mat');
 pos=1;
@@ -27,7 +27,7 @@ for k=1:1:length(colors)
     colormap(color);
     %pause(1);
 end
-imagenRes=imagenRes.*abs(1-base);
+imagenResClean=imagenRes.*abs(1-base);
 
 %pause(2);
 umbral = 10;
@@ -36,9 +36,11 @@ for i=length(colors):-1:1
         fprintf('Salgo de la ejecucion\n');
         return;
     end
-    if any(any(imagenRes==colors(i)))
-        base = imagenRes==colors(i);
+    if any(any(imagenResClean==colors(i)))
+        base = imagenResClean==colors(i) | imagenResClean==colors(i-1);
         fprintf('Color %d corresponde a %d\n',i,colors(i));
+        %imshow(base);
+        %pause(5);        
         break;
     end   
 end
@@ -47,9 +49,26 @@ positions = zeros(2,num);
 for i=1:1:num
     positions(:,i) = [mean(floor(find(imgBase==i)/480));mean(mod(find(imgBase==i),480))];
 end
+
+positionsRes = positions;
+for i=1:1:num
+    for j=i+1:1:num
+        dist = norm(positionsRes(:,i)-positionsRes(:,j));
+        if dist<=10
+            positionsRes(:,i) = (positionsRes(:,i)+positionsRes(:,j))/2;
+            positionsRes(:,j) = positionsRes(:,i);
+        end
+    end
+end
+
+[li,in]=unique(positionsRes(1,:));
+positionsFin = zeros(2,length(in));
+for i=1:1:length(in)
+    positionsFin(:,i) = [li(1,i);positionsRes(2,in(i))];
+end
 image(imagenRes);
 colormap(color);
 hold
-scatter(positions(1,:),positions(2,:),100,'md','filled');
+scatter(positionsFin(1,:),positionsFin(2,:),100,'md','filled');
 hold
 toc
