@@ -4,6 +4,7 @@ require 'openssl'
 require 'json'
 require 'open-uri'
 
+system "mkdir ruby_images"
 index = 100
 while 1 < 2	
 	peticion = "opendata/api/red/radar/regional/va"
