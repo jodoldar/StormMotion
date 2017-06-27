@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby obtencion.rb
+nohup ruby obtencion.rb & 
