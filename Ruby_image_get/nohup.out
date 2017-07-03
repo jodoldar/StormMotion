@@ -1,2 +1,0 @@
-mkdir: cannot create directory ‘ruby_images’: File exists
-obtencion.rb:27: warning: already initialized constant OpenSSL::SSL::VERIFY_PEER
