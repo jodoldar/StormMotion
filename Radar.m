@@ -1,5 +1,5 @@
 tic
-[imagen,color]=imread('images/200620171710.gif');
+[imagen,color]=imread('images/290620172050.gif');
 [base,colorBase]=imread('BaseProvincias.gif');
 load('BaseProvincias.mat');
 pos=1;
@@ -37,7 +37,7 @@ for i=length(colors):-1:1
         return;
     end
     if any(any(imagenResClean==colors(i)))
-        base = imagenResClean==colors(i) | imagenResClean==colors(i-1);
+        base = imagenResClean==colors(i);% | imagenResClean==colors(i-1);
         fprintf('Color %d corresponde a %d\n',i,colors(i));
         %imshow(base);
         %pause(5);        
